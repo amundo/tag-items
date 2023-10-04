@@ -1,4 +1,4 @@
-import { DataViewer } from "///pathall.net/data-viewer/v1.0.0/DataViewer.js"
+import { DataViewer } from "https://pathall.net/data-viewer/v2.0.0/DataViewer.js"
 
 class TagItems extends HTMLElement {
   #data = null
@@ -13,7 +13,6 @@ class TagItems extends HTMLElement {
         </header>
         
         <div id="tags"></div>
-
         <div id="items"></div>
       `
   }
@@ -36,10 +35,10 @@ class TagItems extends HTMLElement {
   }
 
   connectedCallback() {
-    this.render()
+    this.listen()
   }
 
-  render() {
+  listen() {
     this.querySelector("#load").addEventListener("change",
       clickEvent => this.loadFile(clickEvent)
     )
@@ -76,6 +75,10 @@ class TagItems extends HTMLElement {
     }
   }
 
+  get ItemView() {
+    return this.#ItemView
+  }
+
   render() {
     const tagsContainer = this.querySelector("#tags")
     const itemsContainer = this.querySelector("#items")
@@ -93,7 +96,7 @@ class TagItems extends HTMLElement {
     })
 
     this.data.items.forEach((item, index) => {
-      const itemView = document.createElement("div")
+      const itemView = new this.ItemView()
 
       itemView.data = item
       
@@ -107,6 +110,7 @@ class TagItems extends HTMLElement {
         if (!item.tags.includes(tag)) {
           item.tags.push(tag)
         }
+        itemView.render()
       })
 
       itemsContainer.appendChild(itemView)

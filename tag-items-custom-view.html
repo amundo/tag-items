@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>  
+  <title>tag-items with custom item view</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="tag-items.css">
+  <link rel="stylesheet" href="tagged-emoji/tagged-emoji.css">
+
+</head>
+<body>
+
+    <tag-items id=custom src="sample.json"></tag-items>  
+
+<script type="module">
+import {TagItems} from './TagItems.js'
+import {TaggedEmoji} from './tagged-emoji/TaggedEmoji.js'
+
+
+let custom = document.querySelector('#custom')
+custom.ItemView = TaggedEmoji
+</script>
+
+</body>
+</html>
