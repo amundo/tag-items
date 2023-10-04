@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+
+html,body,tag-items{
+  height: 100%;
+  margin: 0 ;
+}
+
+tag-items {
+  padding: 1em;
+  display: grid;
+  grid-template: 
+    "header header" auto
+    "items  tags" 1fr
+  /  1fr 1fr;
+
+  & #tags {
+    grid-template: subgrid;
+    grid-area: tags;
+  }
+
+  & #items {
+    grid-template: subgrid;
+    grid-area: items;
+  }
+}
+
+
+header {
+  border-bottom: 1px solid #ccc;
+  grid-area:header;
+}
